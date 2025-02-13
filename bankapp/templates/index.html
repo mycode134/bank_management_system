@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCC BANK Customer</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f9f9f9, #e6f7ff); /* Light Sky Blue Gradient */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff7f50; /* Light Orange */
+            margin-top: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            padding: 10px 20px;
+            background-color: #87ceeb; /* Light Sky Blue */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: #ff7f50; /* Light Orange on Hover */
+            transform: scale(1.05);
+            color: #fff;
+
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        form label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        form input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+
+        form input:focus {
+            border-color: #87ceeb; /* Light Sky Blue */
+            outline: none;
+            background-color: #e6f7ff;
+            box-shadow: 0 0 8px rgba(135, 206, 235, 0.6);
+        }
+
+        form button {
+            padding: 10px 20px;
+            background-color: #ff7f50; /* Light Orange */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background-color: #ff6347; /* Darker Orange on Hover */
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 750px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                width: 80%;
+                text-align: center;
+            }
+
+            form {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            form input, form button {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 430px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            form input, form button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>KCC BANK Customer</h1>
+    <nav>
+        <a href="{% url 'add_cus' %}">ADD Customer</a>
+        <a href="{% url 'view_all_cus' %}">View All Customer</a>
+        <a href="{% url 'transfer_money' %}">Transfer Money</a>
+        <form method="GET" action="{% url 'filter_cus' %}">
+            <label for="account_no">Filter Account Number:</label>
+            <input type="text" id="account_no" name="account_no">
+            <button type="submit">Filter</button>
+        </form>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer Money</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f9f9f9, #e6f7ff); /* Light Sky Blue Gradient */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff7f50; /* Light Orange */
+            margin-top: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Message Styles */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        ul li {
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #555;
+        }
+
+        /* Form Styles */
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        form input:focus {
+            border-color: #87ceeb; /* Light Sky Blue */
+            outline: none;
+            background-color: #e6f7ff;
+            box-shadow: 0 0 8px rgba(135, 206, 235, 0.6);
+        }
+
+        /* Button Styles */
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #ff7f50; /* Light Orange */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #ff6347; /* Darker Orange on Hover */
+            transform: scale(1.02);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 750px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            form {
+                padding: 20px;
+            }
+
+            ul {
+                margin: 20px 10px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            form {
+                padding: 15px;
+            }
+
+            form input {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            ul li {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% extends 'index.html' %}
+    {% block content %}
+    <h1>Transfer Money</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="sender_account_no">Sender Account No:</label>
+        <input type="text" id="sender_account_no" name="sender_account_no" required>
+        <label for="receiver_account_no">Receiver Account No:</label>
+        <input type="text" id="receiver_account_no" name="receiver_account_no" required>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+        <button type="submit">Transfer</button>
+    </form>
+    {% endblock %}
+</body>
+</html>

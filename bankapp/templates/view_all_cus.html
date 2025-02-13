@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCC BANK Customer</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Button Styles */
+        .edit, .delete {
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit {
+            background-color: #f39c12;
+            color: #fff;
+            margin-right: 5px;
+        }
+
+        .edit:hover {
+            background-color: #e67e22;
+        }
+
+        .delete {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .delete:hover {
+            background-color: #c0392b;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 750px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            th {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
+            td {
+                border-bottom: none;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: #3498db;
+            }
+        }
+
+        @media (max-width: 430px) {
+            td {
+                padding-left: 40%;
+            }
+
+            td::before {
+                width: 40%;
+            }
+        }
+
+        /* Background Colors */
+        body {
+            background-color: #eaf2f8; /* Light Sky Blue */
+        }
+
+        h1 {
+            background-color: #f8c471; /* Light Orange */
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        table {
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #3498db; /* Light Blue */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'index.html' %}
+    {% block content %}
+    <h1>KCC BANK Customer</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Account No</th>
+                <th>Balance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cus in customers %}
+            <tr>
+                <td data-label="ID">{{ cus.id }}</td>
+                <td data-label="Name">{{ cus.name }}</td>
+                <td data-label="Email">{{ cus.email }}</td>
+                <td data-label="Mobile">{{ cus.mobel }}</td>
+                <td data-label="Account No">{{ cus.account_no }}</td>
+                <td data-label="Balance">{{ cus.balance }}</td>
+                <td data-label="Actions">
+                    <a href="{% url 'edit_cus' cus.id %}" class="edit">Edit</a>
+                    <a href="{% url 'delete_cus' cus.id %}" class="delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+</html>
